@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>nz.ac.auckland.groupapps.parent</groupId>
+		<artifactId>parent-groovy-groupapps-central</artifactId>
+		<version>1.1</version>
+	</parent>
+
+	<artifactId>parent-s3jar-groupapps-central</artifactId>
+	<version>1.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>University of Auckland Group Apps - Servlet 3.0 Parent</name>
+	<description>
+		This provides a parent for Servlet 3.0 JARs that have a /META-INF/resources direcory and may have a web-fragments.xml file
+	</description>
+	
+	<scm>
+		<connection>scm:git:git@github.com:uoa-group-applications/parent-s3jar-groupapps-central.git</connection>
+		<developerConnection>scm:git:git@github.com:uoa-group-applications/parent-s3jar-groupapps-central.git</developerConnection>
+		<url>git@github.com:uoa-group-applications/parent-s3jar-groupapps-central.git</url>
+	</scm>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>com.bluetrainsoftware.maven</groupId>
+					<artifactId>karma-runner-plugin</artifactId>
+					<version>1.6</version>
+					<executions>
+						<execution>
+							<id>karma-test</id>
+							<goals>
+								<goal>test</goal>
+							</goals>
+							<phase>test</phase>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-jspc-maven-plugin</artifactId>
+					<version>9.0.2.v20130417</version>
+					<executions>
+						<execution>
+							<id>war-compile-jsp</id>
+							<goals>
+								<goal>jspc</goal>
+							</goals>
+							<phase>compile</phase>
+							<configuration>
+								<webAppSourceDirectory>
+									${project.build.outputDirectory}
+								</webAppSourceDirectory>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.jasig.maven</groupId>
+					<artifactId>sass-maven-plugin</artifactId>
+					<version>1.1.1</version>
+
+					<executions>
+						<execution>
+							<phase>generate-resources</phase>
+							<goals>
+								<goal>update-stylesheets</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<resources>
+							<resource>
+								<source>
+									<directory>${basedir}/src/main/resources/META-INF/resources/scss</directory>
+									<includes>
+										<include>**/*.scss</include>
+									</includes>
+									<excludes>
+										<exclude>**/watch-settings</exclude>
+									</excludes>
+								</source>
+								<destination>${project.build.outputDirectory}/META-INF/resources/css</destination>
+							</resource>
+						</resources>
+						<useCompass>true</useCompass>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
