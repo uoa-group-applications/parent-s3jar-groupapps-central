@@ -8,7 +8,7 @@
 	</parent>
 
 	<artifactId>parent-s3jar-groupapps-central</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.1</version>
 	<packaging>pom</packaging>
 
 	<name>University of Auckland Group Apps - Servlet 3.0 Parent</name>
@@ -20,7 +20,8 @@
 		<connection>scm:git:git@github.com:uoa-group-applications/parent-s3jar-groupapps-central.git</connection>
 		<developerConnection>scm:git:git@github.com:uoa-group-applications/parent-s3jar-groupapps-central.git</developerConnection>
 		<url>git@github.com:uoa-group-applications/parent-s3jar-groupapps-central.git</url>
-	</scm>
+	  <tag>parent-s3jar-groupapps-central-1.1</tag>
+  </scm>
 
 	<build>
 		<pluginManagement>
